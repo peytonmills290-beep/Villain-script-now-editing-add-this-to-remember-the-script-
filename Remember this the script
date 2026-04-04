@@ -7688,10 +7688,10 @@ local MiscSection = SelfPage:Section({
     Name = "Player Misc",
     Description = "Misc for other players",
     Icon = "123944728972740",
-    Side = 1
+    Side = 2
 })
 -- new section
-local CallallToggle = SelfSection:Toggle({
+local CallallToggle = MiscSection:Toggle({
     Name = "Call-All",
     Flag = "Calls All",
     Default = false,
@@ -7714,7 +7714,7 @@ local CallallToggle = SelfSection:Toggle({
     end
 })
 
-local HealthToggle = SelfSection:Toggle({
+local HealthToggle = MiscSection:Toggle({
     Name = "Health Bar",
     Flag = "Health Bar",
     Type = "Checkbox",
