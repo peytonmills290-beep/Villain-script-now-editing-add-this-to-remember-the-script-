@@ -7609,6 +7609,37 @@ local ZoomToggle = SelfSection:Toggle({
         end
 })
 
+local ResolutionToggle = SelfSection:Toggle({
+    Name = "Stretch Resolution",
+    Flag = "Enables Stretch Resolution",
+    Type = "Checkbox",
+    Default = false,
+    Callback = function(state) 
+        stretchResEnabled = state
+
+        if stretchResEnabled then
+            getgenv().Resolution = {
+                [".gg/scripters"] = 0.65 
+            }
+
+            if not stretchConnection then
+                stretchConnection = runService.RenderStepped:Connect(function()
+                    Camera.CFrame = Camera.CFrame * CFrame.new(0, 0, 0, 1, 0, 0, 0, getgenv().Resolution[".gg/scripters"], 0, 0, 0, 1)
+                end)
+            end
+        else
+            if stretchConnection then
+                stretchConnection:Disconnect()
+                stretchConnection = nil
+            end
+        end
+    end
+})
+
+
+
+
+
 
 -- 5️⃣ INFINITE STAMINA TOGGLE
 local StaminaToggle = SelfSection:Toggle({
