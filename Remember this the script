@@ -7468,13 +7468,13 @@ end)
 -- Setup GUI Pages
 -- =========================
 Window:Category("Misc & Miscellaneous")
-local SelfPage = Window:Page({Name = "Self", Icon = "104184057534339"})
-local MoneyPage = Window:Page({Name = "Money", Icon = "85500115785722", Columns = 1})
+local SelfPage = Window:Page({Name = "Self", Icon = "87159875634078"})
+local MoneyPage = Window:Page({Name = "Money", Icon = "71938739487771", Columns = 1})
 local WorldPage = Window:Page({Name = "World", Icon = "123944728972740"})
 
 Window:Category("Combat & Visuals")
-local espPage = Window:Page({Name = "esp", Icon = "131808384905233"})
-local CombatPage = Window:Page({Name = "Combat", Icon = "140016863627496"})
+local CombatPage = Window:Page({Name = "Combat", Icon = "74553164794678"})
+local VisualsPage = Window:Page({Name = "Visuals", Icon = "109969135891325"})
 
 Window:Category("Utilities & Settings")
 local SettingsPage = Library:CreateSettingsPage(Window, KeybindList)
@@ -7684,47 +7684,6 @@ SelfSection:Toggle({
     end
 })
 
-local MiscSection = SelfPage:Section({
-    Name = "Player Misc",
-    Description = "Misc for other players",
-    Icon = "123944728972740",
-    Side = 2
-})
--- new section
-local CallallToggle = MiscSection:Toggle({
-    Name = "Call-All",
-    Flag = "Calls All",
-    Default = false,
-    Callback = function(state)
-    local ReplicatedStorage = game:GetService("ReplicatedStorage")
-        local Players = game:GetService("Players")
-        
-        local phoneEvent = ReplicatedStorage:FindFirstChild("RemoteEvents"):FindFirstChild("RE_Phone")
-        
-        if phoneEvent then
-            for _, player in pairs(Players:GetPlayers()) do
-                if player ~= game.Players.LocalPlayer then 
-                    phoneEvent:FireServer("CallRequest", { Target = player })
-        
-                    task.wait(1) 
-                    phoneEvent:FireServer("CallResponse", { Response = {true} }) 
-                end
-            end
-        end
-    end
-})
-
-local HealthToggle = MiscSection:Toggle({
-    Name = "Health Bar",
-    Flag = "Health Bar",
-    Type = "Checkbox",
-    Value = false,
-    Callback = function(state) 
-    if state then
-            loadstring(game:HttpGet('https://pastebin.com/raw/RZ7kbGD6'))()
-        end
-    end
-})
 
 
 
@@ -7804,6 +7763,52 @@ CombatSection:Button({
         print("Gun Mods Applied!")
     end
 })
+
+CombatSection:Toggle({
+    Name = "Hitbox Expander",
+    Flag = "Hitbox Expander",
+    Default = "False",
+    Callback = function(state) 
+        if state then
+            loadstring(game:HttpGet('https://pastebin.com/raw/6zXxnvRE'))()
+        end
+    end
+})
+
+local VisualsSection = VisualsPage:Section({
+    Name = "Visuals",
+    Description = "Visuals & Esp",
+    Icon = "123944728972740",
+    Side = 1
+})
+
+local espToggle = VisualsSection:Toggle({
+    Name = "box esp",
+    Flag = "box esp",
+    Default = "false",
+    Callback = function(state) 
+    if state then
+            loadstring(game:HttpGet('https://pastebin.com/raw/i9EFDTBn'))()
+        end
+    end
+})
+
+local espToggle = VisualsSection:Toggle({
+    Name = "Health esp",
+    Flag = "health esp",
+    default = "false",
+    Callback = function(state) 
+    if state then
+            loadstring(game:HttpGet('https://pastebin.com/raw/RZ7kbGD6'))()
+        end
+    end
+})
+
+
+
+
+
+
 
 -- =========================
 -- TELEPORT LOCATIONS
@@ -7885,7 +7890,7 @@ end
 local AutoFarmSection = MoneyPage:Section({
     Name = "Auto Farms",
     Description = "Toggle your farms",
-    Icon = "1234567890" -- optional icon
+    Icon = "71938739487771" -- optional icon
 })
 
 -- SERVICES
