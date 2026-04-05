@@ -7636,19 +7636,7 @@ local ResolutionToggle = SelfSection:Toggle({
     end
 })
 
-local FovToggle = SelfSection:Toggle({
-    Name = "Adjust Fov",
-    Flag = "Adjust Fov",
-    Default = 1,
-    Value = {
-        Min = 70.0,
-        Max = 120.0,
-        Default = 70.0,
-    },
-    Callback = function(value)
-       workspace.CurrentCamera.FieldOfView = value
-    end
-})
+
 
 -- 5️⃣ INFINITE STAMINA TOGGLE
 local StaminaToggle = SelfSection:Toggle({
