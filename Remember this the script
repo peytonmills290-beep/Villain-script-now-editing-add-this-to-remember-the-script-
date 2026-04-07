@@ -7644,22 +7644,29 @@ local StaminaToggle = SelfSection:Toggle({
     Flag = "InfiniteStamina",
     Default = false,
     Callback = function(Value)
-        getgenv().InfiniteStamina = Value
-        print("Infinite Stamina:", Value)
+     _G.DendriteStamina = true --- Enabled as default.
+function B()
+     for _, C in pairs(getgc(true)) do
+         if type(C) == "function" and getfenv(C).script ==
+game:GetService("Players").LocalPlayer.PlayerScripts.Main.Modules.SprintHandler
+then
+             if debug.getinfo(C).name == "onHeartbeatUpdate" then
+                 hookfunction(C, function(D)
+                     if _G.DendriteStamina then
+                          local E =
+require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("Main"))
+                          E.Stamina = 100
+                     else
+                          local F =
+require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("Main"))
+                          F.Stamina = F.Stamina
+                     end
+                      if game.Players.LocalPlayer.Character and
+game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+
     end
 })
 
--- Loop to continuously apply Infinite Stamina
-task.spawn(function()
-    while true do
-        task.wait(0.1)
-        if getgenv().InfiniteStamina and char and char:FindFirstChildOfClass("Humanoid") then
-            if char:FindFirstChild("Stamina") then
-                char.Stamina.Value = char.Stamina.MaxValue
-            end
-        end
-    end
-end)
 
 -- Click Delete Toggle
 SelfSection:Toggle({
