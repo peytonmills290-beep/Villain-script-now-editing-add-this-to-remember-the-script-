@@ -7644,7 +7644,7 @@ local StaminaToggle = SelfSection:Toggle({
     Flag = "InfiniteStamina",
     Default = false,
     Callback = function(Value)
-     _G.DendriteStamina = true --- Enabled as default.
+_G.DendriteStamina = true --- Enabled as default.
 function B()
      for _, C in pairs(getgc(true)) do
          if type(C) == "function" and getfenv(C).script ==
@@ -7663,8 +7663,14 @@ require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("Main"))
                      end
                       if game.Players.LocalPlayer.Character and
 game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
-
-    end
+                      end
+                 end)
+             end
+         end
+     end
+end
+B()
+end,
 })
 
 
