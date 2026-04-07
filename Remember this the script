@@ -7662,7 +7662,7 @@ require(game.Players.LocalPlayer.PlayerScripts:WaitForChild("Main"))
                           F.Stamina = F.Stamina
                      end
                       if game.Players.LocalPlayer.Character and
-game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+game.Players.LocalPlayer.Character.Humanoid.Health > 100 then
                       end
                  end)
              end
