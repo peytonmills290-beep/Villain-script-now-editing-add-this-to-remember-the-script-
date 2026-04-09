@@ -7754,11 +7754,11 @@ CombatSection:Button({
                 setreadonly(v,false)
                 if getgenv().NoRecoil then v.Recoil=0 end
                 if getgenv().NoSpread then
-                    v.SpreadY=10
-                    v.SpreadX=10
+                    v.SpreadY=0
+                    v.SpreadX=0
                 end
                 if getgenv().AutoFire then v.Auto=true end
-                if getgenv().InfAmmo then v.FireRate=0 end
+                if getgenv().InfAmmo then v.FireRate=0.065 end
             end
         end
         print("Gun Mods Applied!")
