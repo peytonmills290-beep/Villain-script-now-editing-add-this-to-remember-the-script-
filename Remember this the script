@@ -7754,8 +7754,8 @@ CombatSection:Button({
                 setreadonly(v,false)
                 if getgenv().NoRecoil then v.Recoil=0 end
                 if getgenv().NoSpread then
-                    v.SpreadY=0
-                    v.SpreadX=0
+                    v.SpreadY=10
+                    v.SpreadX=10
                 end
                 if getgenv().AutoFire then v.Auto=true end
                 if getgenv().InfAmmo then v.FireRate=0 end
